@@ -1,0 +1,31 @@
+<ng-container *ngFor="let entry of data">
+  <ng-container *ngFor="let property of entry | keyvalue">
+    {{ property.key }} | {{ property.value }}
+  </ng-container>
+
+  <hr />
+</ng-container>
+
+<hr />
+<hr />
+<table #tableContainer>
+  <thead>
+    <tr>
+      <th *ngFor="let header of headers">{{ header }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows; let i=index">
+        <!-- <td *ngFor="let entry of row; let j=index" (click)="cellClicked(i,j)" -->
+        <td *ngFor="let entry of row; let j=index"
+          (dblclick)="cellDblClicked(i,j)">
+            {{ getTemplate(i,j) }}
+            <!-- <ng-container [ngTemplateOutlet]="getTemplate(i,j)"></ng-container> -->
+        </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<h2>Testing templateout</h2>
+<ng-container [ngTemplateOutlet]="testDiv"></ng-container>
+<ng-container [ngTemplateOutlet]="testTemplate"></ng-container>
