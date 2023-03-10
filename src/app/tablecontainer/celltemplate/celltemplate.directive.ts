@@ -1,11 +1,14 @@
 import { Directive, ElementRef, HostBinding, HostListener, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[celltemplate]'
+  selector: '[celltemplate]',
+  exportAs: 'cellT'   // Note, this allows for <ng-template #column2="cellT"> --> assigns to a variable
+    
 })
 export class CelltemplateDirective {
 
-  @Input() celltemplate?: TemplateRef<any> | "" = undefined;
+  // @Input() celltemplate?: TemplateRef<any> | "" = undefined;
+  @Input() celltemplate?: string | "" = undefined;
   
   @HostListener('mouseleave') onBlockLeave() {
     console.log('bye bye block');
@@ -31,8 +34,12 @@ export class CelltemplateDirective {
 // }
 // }  
 
-  constructor(private el: ElementRef) { 
+  constructor(public viewRef: ViewContainerRef, public template: TemplateRef<any>) { 
     // viewRef.createEmbeddedView(cellTemplate);
+
+    console.log('Celltemplate directiev');
+    console.log(this.celltemplate);
+    console.log(this.template);
   }
 
   ngOnit() {

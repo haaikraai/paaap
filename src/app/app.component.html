@@ -1,14 +1,18 @@
 
-<h2 celltemplate>tttt - {{ roleSelect }}</h2>
+<h2>tttt - {{ roleSelect }}</h2>
 <h5 *ngFor="let role of roleSelect">{{ role }}</h5>
 <app-tablecontainer [data]="users">
+  <ng-template celltemplate="appcomp_inside_table">
+    <div>
+      Test this from app component
+    </div>
+  </ng-template>
   <div>Test for viewchild</div>
-  <ng-template #role [celltemplate]="role">
+  <ng-template #role [celltemplate]="'role'">
     <!-- <ng-template celltemplate="role"> -->
       <select >
           <option *ngFor="let role of roleSelect" [value]="role">{{ roleSelect }}</option>
       </select>
     </ng-template>
-  
-  
 </app-tablecontainer>
+<ng-template celltemplate="appcomp_outside_table"></ng-template>

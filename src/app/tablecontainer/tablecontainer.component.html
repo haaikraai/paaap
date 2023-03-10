@@ -3,12 +3,12 @@
     {{ property.key }} | {{ property.value }}
   </ng-container>
 
-  <hr />
+  
 </ng-container>
 
 <hr />
 <hr />
-<table #tableContainer>
+<table>
   <thead>
     <tr>
       <th *ngFor="let header of headers">{{ header }}</th>
@@ -25,7 +25,15 @@
     </tr>
   </tbody>
 </table>
+
 <hr>
+<ng-template celltemplate tblcont1>
+  <h1>template inside tablecontainer</h1>
+</ng-template>
+
+<ng-template celltemplate hasthedif>
+  <div>template inside tablecontainer</div>
+</ng-template>
 <h2>Testing templateout</h2>
-<ng-container [ngTemplateOutlet]="testDiv"></ng-container>
 <ng-container [ngTemplateOutlet]="testTemplate"></ng-container>
+<ng-container [ngTemplateOutlet]="testDiv"></ng-container>

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ContentChild, ElementRef, Input, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { CelltemplateDirective } from './celltemplate/celltemplate.directive';
 
 type Row = string[];
 type metaCell = {
@@ -20,8 +21,10 @@ export class TablecontainerComponent implements AfterViewInit {
   // @Input('[celltemplate]') testTemplate!: TemplateRef<any>;
   @ViewChild('table', {static: true, read: ElementRef}) tableContent!: HTMLTableElement;
   // @ViewChild('[celltemplate]', {static: true, read: TemplateRef}) testTemplate!: TemplateRef<any>;
-  @ViewChild(TemplateRef) testTemplate!: TemplateRef<any>;
-  @ContentChild('div', {static: true, read: TemplateRef}) testDiv: any;
+
+
+  @ContentChild(CelltemplateDirective, {read: TemplateRef}) testTemplate!: TemplateRef<any>;
+  @ViewChild(CelltemplateDirective, {read: TemplateRef, static: true}) testDiv!: TemplateRef<any>;
   headers: string[] =[];
   rows: Table = [];
   
@@ -32,12 +35,13 @@ export class TablecontainerComponent implements AfterViewInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
+    console.log(this.testTemplate);
       
     this.getMetaTable();
 
-    this.headers = this.getHeaders();
+    // this.headers = this.getHeaders();
 
-    this.getRows();
+    // this.getRows();
 
     console.log(this.tableContent);
       
@@ -55,7 +59,7 @@ export class TablecontainerComponent implements AfterViewInit {
     const performanceHeaders = Object.keys(this.data[0]);
     for (let col = 0; col < performanceHeaders.length; col++) {
       const toadd = performanceHeaders[col];
-      console.log('To add header: ', toadd);
+      // console.log('To add header: ', toadd);
       this.metaHeaders.push({label: toadd, template: null});
     }
     
@@ -71,9 +75,9 @@ export class TablecontainerComponent implements AfterViewInit {
       for (cindex = 0; cindex < performanceRows.length; cindex++) {
         keyToAdd = performanceRows[cindex][0];
         valToAdd = performanceRows[cindex][1];
-        console.log(performanceRows);
+        // console.log(performanceRows);
         
-        console.log("row: ",  rindex, "; col key: ", keyToAdd,"; col val: ", valToAdd);
+        // console.log("row: ",  rindex, "; col key: ", keyToAdd,"; col val: ", valToAdd);
         // console.log(rowToAdd);
         // oneRow.cindex
         oneCell = {rindex: rindex, cindex: cindex, headerRef: this.metaHeaders[cindex].label, value: performanceRows[cindex][1]};
