@@ -2,26 +2,26 @@
   <ng-container *ngFor="let property of entry | keyvalue">
     {{ property.key }} | {{ property.value }}
   </ng-container>
-
-  
 </ng-container>
 
 <hr />
+<h1>Ze table:</h1>
 <hr />
 <table>
   <thead>
     <tr>
-      <th *ngFor="let header of headers">{{ header }}</th>
+      <th *ngFor="let header of metaHeaders">{{ header }}</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of rows; let i=index">
-        <!-- <td *ngFor="let entry of row; let j=index" (click)="cellClicked(i,j)" -->
-        <td *ngFor="let entry of row; let j=index"
-          (dblclick)="cellDblClicked(i,j)">
-            {{ getTemplate(i,j) }}
-            <!-- <ng-container [ngTemplateOutlet]="getTemplate(i,j)"></ng-container> -->
-        </td>
+    <tr *ngFor="let row of rows; let i = index">
+      <!-- <td *ngFor="let entry of row; let j=index" (click)="cellClicked(i,j)" -->
+      <td
+        *ngFor="let entry of row; let j = index"
+        (dblclick)="cellDblClicked(i, j)">
+        {{ getTemplate(i, j) }}
+        <!-- <ng-container [ngTemplateOutlet]="getTemplate(i,j)"></ng-container> -->
+      </td>
     </tr>
   </tbody>
 </table>

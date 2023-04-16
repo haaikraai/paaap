@@ -11,6 +11,11 @@ type metaCell = {
 type metaRow = metaCell[];
 type Table = Row[];
 
+
+/*
+Component generates a MetaTable including all the data as well as a separate headers and rows copy of the values only.
+This extra RAM usage should be worth the performance increase for small to medium tables.
+*/
 @Component({
   selector: 'app-tablecontainer',
   templateUrl: './tablecontainer.component.html',
@@ -61,6 +66,7 @@ export class TablecontainerComponent implements AfterViewInit {
       const toadd = performanceHeaders[col];
       // console.log('To add header: ', toadd);
       this.metaHeaders.push({label: toadd, template: null});
+      this.headers.push(toadd);
     }
     
     
@@ -120,7 +126,9 @@ export class TablecontainerComponent implements AfterViewInit {
   @Description: Returns the VALUE of the table cell positioned at row i, column j
   */
   getTemplate(i: number, j: number): string {
-    return this.rows[i][j];
+    const toReturn = this.metaTable[i][j].value;
+    console.log('attempting to return: ' + toReturn)
+    return toReturn;
   }
 
   cellDblClicked(i: number, j: number) {

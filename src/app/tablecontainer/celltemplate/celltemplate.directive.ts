@@ -34,12 +34,8 @@ export class CelltemplateDirective {
 // }
 // }  
 
-  constructor(public viewRef: ViewContainerRef, public template: TemplateRef<any>) { 
+  constructor(public template: TemplateRef<any>) { 
     // viewRef.createEmbeddedView(cellTemplate);
-
-    console.log('Celltemplate directiev');
-    console.log(this.celltemplate);
-    console.log(this.template);
   }
 
   ngOnit() {
